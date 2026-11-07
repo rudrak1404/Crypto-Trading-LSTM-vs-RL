@@ -1,0 +1,9 @@
+torch>=2.4
+pandas>=2.2
+numpy>=2.0
+scipy>=1.13
+matplotlib>=3.9
+gymnasium>=1.0
+stable-baselines3>=2.4
+optuna>=4.0
+pytest>=8.0

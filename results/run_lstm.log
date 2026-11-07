@@ -1,0 +1,73 @@
+[  0.0m] data: {'rows': 68605, 'start': '2019-01-01 00:00:00+00:00', 'end': '2026-10-31 23:00:00+00:00', 'missing_hours': 59}
+[  0.0m] train:  43656 bars  2019-01-08 00:00:00+00:00 -> 2023-12-31 23:00:00+00:00
+[  0.0m] val  :   8784 bars  2024-01-01 00:00:00+00:00 -> 2024-12-31 23:00:00+00:00
+[  0.0m] test :  16055 bars  2025-01-01 00:00:00+00:00 -> 2026-10-31 22:00:00+00:00
+[  0.0m] walk-forward: 8 segments: 2025-01-01, 2025-04-01, 2025-07-01, 2025-10-01, 2026-01-01, 2026-04-01, 2026-07-01, 2026-10-01
+[  0.0m] 
+== LSTM untuned (defaults, hourly, fit once on train)
+[  0.2m]   LSTM  untuned   val  seed=0   sharpe=+1.09 ret=+48.9% mdd=-38.8% exp=80% trades=613
+[  0.2m]   LSTM  untuned   test seed=0   sharpe=-1.36 ret=-66.2% mdd=-70.2% exp=84% trades=938
+[  0.4m]   LSTM  untuned   val  seed=1   sharpe=+0.70 ret=+21.7% mdd=-37.9% exp=58% trades=702
+[  0.4m]   LSTM  untuned   test seed=1   sharpe=-2.12 ret=-71.5% mdd=-77.9% exp=56% trades=1268
+[  0.5m]   LSTM  untuned   val  seed=2   sharpe=+0.04 ret=-6.8% mdd=-45.2% exp=63% trades=692
+[  0.5m]   LSTM  untuned   test seed=2   sharpe=-1.60 ret=-66.7% mdd=-72.7% exp=65% trades=1187
+[  0.5m]   LSTM  untuned   val  seed=ens sharpe=+0.44 ret=+10.4% mdd=-39.6% exp=68% trades=672
+[  0.5m]   LSTM  untuned   test seed=ens sharpe=-1.61 ret=-67.6% mdd=-72.3% exp=69% trades=1140
+[  0.5m] 
+== LSTM Optuna: 40 trials, objective = validation Sharpe (exposure >= 10%)
+[  0.6m]   trial  0 score=+1.76 sharpe=+1.76 th=0.0 epochs=1 {'seq_len': 48, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.22721782443757294, 'lr': 0.002329262676497441, 'weight_decay': 0.0001, 'decide_every': 24}
+[  0.8m]   trial  1 score=+0.94 sharpe=+0.94 th=0.0 epochs=1 {'seq_len': 24, 'horizon': 12, 'hidden': 128, 'layers': 1, 'dropout': 0.2273735795474594, 'lr': 0.00010659941309425501, 'weight_decay': 0.0, 'decide_every': 1}
+[  0.9m]   trial  2 score=+1.72 sharpe=+1.72 th=0.0 epochs=1 {'seq_len': 24, 'horizon': 24, 'hidden': 128, 'layers': 1, 'dropout': 0.08355070243793389, 'lr': 0.00017309069329908935, 'weight_decay': 0.0, 'decide_every': 24}
+[  1.1m]   trial  3 score=+1.63 sharpe=+1.63 th=0.0 epochs=1 {'seq_len': 168, 'horizon': 24, 'hidden': 64, 'layers': 2, 'dropout': 0.01567511690172827, 'lr': 0.000261661710093957, 'weight_decay': 0.0001, 'decide_every': 24}
+[  1.3m]   trial  4 score=+0.60 sharpe=+0.60 th=0.05 epochs=4 {'seq_len': 24, 'horizon': 4, 'hidden': 64, 'layers': 1, 'dropout': 0.23460517392403327, 'lr': 0.00010707825469379903, 'weight_decay': 0.0, 'decide_every': 12}
+[  1.5m]   trial  5 score=+0.16 sharpe=+0.16 th=0.0 epochs=2 {'seq_len': 48, 'horizon': 1, 'hidden': 64, 'layers': 2, 'dropout': 0.2325091490543435, 'lr': 0.002006457864626187, 'weight_decay': 0.0001, 'decide_every': 1}
+[  1.8m]   trial  6 score=+0.83 sharpe=+0.83 th=0.0 epochs=4 {'seq_len': 96, 'horizon': 1, 'hidden': 64, 'layers': 2, 'dropout': 0.26084130800067556, 'lr': 0.00043376783084257285, 'weight_decay': 0.0, 'decide_every': 1}
+[  2.0m]   trial  7 score=+0.25 sharpe=+0.25 th=0.05 epochs=4 {'seq_len': 96, 'horizon': 1, 'hidden': 32, 'layers': 1, 'dropout': 0.02766679818205522, 'lr': 0.0010719804484767977, 'weight_decay': 0.001, 'decide_every': 1}
+[  2.1m]   trial  8 score=+0.87 sharpe=+0.87 th=0.0 epochs=1 {'seq_len': 24, 'horizon': 12, 'hidden': 64, 'layers': 1, 'dropout': 0.0658776625991651, 'lr': 0.0008279401738153828, 'weight_decay': 0.001, 'decide_every': 24}
+[  2.3m]   trial  9 score=+1.75 sharpe=+1.75 th=0.0 epochs=2 {'seq_len': 48, 'horizon': 1, 'hidden': 128, 'layers': 1, 'dropout': 0.2785373955261838, 'lr': 0.0003613976055701623, 'weight_decay': 0.0, 'decide_every': 24}
+[  2.4m]   trial 10 score=+1.80 sharpe=+1.80 th=0.1 epochs=1 {'seq_len': 96, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.27866167752412035, 'lr': 0.0007472746914063356, 'weight_decay': 0.0001, 'decide_every': 12}
+[  2.6m]   trial 11 score=+1.40 sharpe=+1.40 th=0.05 epochs=3 {'seq_len': 96, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.3569435559748786, 'lr': 0.00016995662613123594, 'weight_decay': 0.0001, 'decide_every': 12}
+[  2.8m]   trial 12 score=+1.44 sharpe=+1.44 th=0.05 epochs=1 {'seq_len': 24, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.25271901749059067, 'lr': 0.0013086451414566465, 'weight_decay': 0.0001, 'decide_every': 12}
+[  2.9m]   trial 13 score=+1.67 sharpe=+1.67 th=0.0 epochs=1 {'seq_len': 48, 'horizon': 24, 'hidden': 32, 'layers': 1, 'dropout': 0.18723150574774095, 'lr': 0.0018441022610640818, 'weight_decay': 0.0001, 'decide_every': 24}
+[  3.1m]   trial 14 score=+1.74 sharpe=+1.74 th=0.0 epochs=1 {'seq_len': 96, 'horizon': 24, 'hidden': 64, 'layers': 2, 'dropout': 0.18903994693935777, 'lr': 0.0008647436520699555, 'weight_decay': 0.0001, 'decide_every': 24}
+[  3.2m]   trial 15 score=+1.58 sharpe=+1.58 th=0.05 epochs=2 {'seq_len': 48, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.16737041284774884, 'lr': 0.00028670208035625773, 'weight_decay': 0.0001, 'decide_every': 24}
+[  3.3m]   trial 16 score=-0.97 sharpe=-0.97 th=0.0 epochs=1 {'seq_len': 48, 'horizon': 4, 'hidden': 32, 'layers': 2, 'dropout': 0.21946675083789385, 'lr': 0.0006684769299990671, 'weight_decay': 0.001, 'decide_every': 24}
+[  3.4m]   trial 17 score=+0.97 sharpe=+0.97 th=0.05 epochs=1 {'seq_len': 48, 'horizon': 24, 'hidden': 32, 'layers': 1, 'dropout': 0.31767596235385137, 'lr': 0.0006251294704017997, 'weight_decay': 0.0001, 'decide_every': 24}
+[  3.6m]   trial 18 score=+2.09 sharpe=+2.09 th=0.0 epochs=1 {'seq_len': 48, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.30597608743868565, 'lr': 0.0016456195211795983, 'weight_decay': 0.0001, 'decide_every': 24}
+[  3.7m]   trial 19 score=+1.61 sharpe=+1.61 th=0.0 epochs=1 {'seq_len': 48, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.32699218146115683, 'lr': 0.0018328132110036867, 'weight_decay': 0.001, 'decide_every': 24}
+[  3.9m]   trial 20 score=+1.68 sharpe=+1.68 th=0.0 epochs=2 {'seq_len': 48, 'horizon': 1, 'hidden': 64, 'layers': 2, 'dropout': 0.30936470246021547, 'lr': 0.0011646188042262707, 'weight_decay': 0.0001, 'decide_every': 24}
+[  4.1m]   trial 21 score=+0.38 sharpe=+0.38 th=0.0 epochs=4 {'seq_len': 96, 'horizon': 1, 'hidden': 32, 'layers': 2, 'dropout': 0.20513866187772117, 'lr': 0.0005571797979784031, 'weight_decay': 0.0001, 'decide_every': 12}
+[  4.3m]   trial 22 score=+1.41 sharpe=+1.41 th=0.0 epochs=1 {'seq_len': 48, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.19371290684997367, 'lr': 0.002880840546618467, 'weight_decay': 0.0001, 'decide_every': 24}
+[  4.4m]   trial 23 score=+1.31 sharpe=+1.31 th=0.05 epochs=1 {'seq_len': 24, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.36527795912458666, 'lr': 0.00219932156055475, 'weight_decay': 0.0001, 'decide_every': 12}
+[  4.6m]   trial 24 score=+0.66 sharpe=+0.66 th=0.0 epochs=1 {'seq_len': 48, 'horizon': 4, 'hidden': 128, 'layers': 2, 'dropout': 0.33273661646523434, 'lr': 0.0020578876287946834, 'weight_decay': 0.0001, 'decide_every': 24}
+[  5.0m]   trial 25 score=+2.16 sharpe=+2.16 th=0.0 epochs=1 {'seq_len': 168, 'horizon': 24, 'hidden': 128, 'layers': 2, 'dropout': 0.251196214833449, 'lr': 0.002069500106252275, 'weight_decay': 0.0001, 'decide_every': 24}
+[  5.3m]   trial 26 score=+0.32 sharpe=+0.32 th=0.1 epochs=2 {'seq_len': 96, 'horizon': 12, 'hidden': 32, 'layers': 2, 'dropout': 0.275757931222201, 'lr': 0.00032265646745543986, 'weight_decay': 0.0001, 'decide_every': 12}
+[  5.5m]   trial 27 score=+1.69 sharpe=+1.69 th=0.0 epochs=1 {'seq_len': 96, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.30323388656551176, 'lr': 0.0009297818873772509, 'weight_decay': 0.0, 'decide_every': 12}
+[  5.8m]   trial 28 score=+2.17 sharpe=+2.17 th=0.0 epochs=1 {'seq_len': 168, 'horizon': 24, 'hidden': 64, 'layers': 2, 'dropout': 0.12275464194301117, 'lr': 0.0018728089234441973, 'weight_decay': 0.0001, 'decide_every': 24}
+[  6.4m]   trial 29 score=+1.12 sharpe=+1.12 th=0.05 epochs=1 {'seq_len': 48, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.39076585279768306, 'lr': 0.0014005278646689067, 'weight_decay': 0.0001, 'decide_every': 24}
+[  7.0m]   trial 30 score=+1.89 sharpe=+1.89 th=0.05 epochs=2 {'seq_len': 168, 'horizon': 24, 'hidden': 64, 'layers': 2, 'dropout': 0.1013048363266569, 'lr': 0.0014291261932837622, 'weight_decay': 0.0001, 'decide_every': 24}
+[  7.3m]   trial 31 score=+2.41 sharpe=+2.41 th=0.0 epochs=1 {'seq_len': 168, 'horizon': 24, 'hidden': 128, 'layers': 2, 'dropout': 0.04711535285362581, 'lr': 0.0017214188065405563, 'weight_decay': 0.0001, 'decide_every': 24}
+[  7.4m]   trial 32 score=+1.56 sharpe=+1.56 th=0.0 epochs=1 {'seq_len': 48, 'horizon': 24, 'hidden': 32, 'layers': 1, 'dropout': 0.2869828322760369, 'lr': 0.0012923311211444405, 'weight_decay': 0.0001, 'decide_every': 24}
+[  7.9m]   trial 33 score=+1.08 sharpe=+1.08 th=0.0 epochs=2 {'seq_len': 168, 'horizon': 24, 'hidden': 128, 'layers': 2, 'dropout': 0.3336006353069192, 'lr': 0.0027393613895703266, 'weight_decay': 0.0001, 'decide_every': 4}
+[  8.2m]   trial 34 score=+1.82 sharpe=+1.82 th=0.0 epochs=1 {'seq_len': 168, 'horizon': 24, 'hidden': 128, 'layers': 2, 'dropout': 0.07378776615502279, 'lr': 0.0029086564217498017, 'weight_decay': 0.0001, 'decide_every': 24}
+[  8.6m]   trial 35 score=+2.06 sharpe=+2.06 th=0.0 epochs=1 {'seq_len': 168, 'horizon': 24, 'hidden': 128, 'layers': 2, 'dropout': 0.21746375858365558, 'lr': 0.002023517115771886, 'weight_decay': 0.0, 'decide_every': 24}
+[  8.7m]   trial 36 score=+1.42 sharpe=+1.42 th=0.0 epochs=1 {'seq_len': 24, 'horizon': 24, 'hidden': 128, 'layers': 2, 'dropout': 0.023910907465049508, 'lr': 0.0024900771110628207, 'weight_decay': 0.0001, 'decide_every': 24}
+[  9.1m]   trial 37 score=+1.86 sharpe=+1.86 th=0.0 epochs=1 {'seq_len': 168, 'horizon': 24, 'hidden': 128, 'layers': 2, 'dropout': 0.29324238558938287, 'lr': 0.0018442445247726167, 'weight_decay': 0.0001, 'decide_every': 24}
+[  9.5m]   trial 38 score=+1.97 sharpe=+1.97 th=0.0 epochs=1 {'seq_len': 168, 'horizon': 24, 'hidden': 128, 'layers': 2, 'dropout': 0.3595042084700837, 'lr': 0.001720421132767037, 'weight_decay': 0.0001, 'decide_every': 24}
+[  9.6m]   trial 39 score=+2.89 sharpe=+2.89 th=0.0 epochs=2 {'seq_len': 168, 'horizon': 24, 'hidden': 32, 'layers': 2, 'dropout': 0.12144511904097338, 'lr': 0.002648990715782306, 'weight_decay': 0.0001, 'decide_every': 24}
+[  9.6m] best LSTM: LSTMConfig(seq_len=168, horizon=24, hidden=32, layers=2, dropout=0.12144511904097338, lr=0.002648990715782306, weight_decay=0.0001, batch=256, epochs=25, patience=3, threshold=0.0, allow_short=False, decide_every=24, seed=0)
+[  9.6m] 
+== LSTM tuned (single refit on train+val) and tuned_wf (quarterly walk-forward)
+[  9.8m]   LSTM  tuned     val  seed=0   sharpe=+2.89 ret=+153.5% mdd=-20.0% exp=47% trades=154
+[  9.9m]   LSTM  tuned     test seed=0   sharpe=+0.13 ret=-3.1% mdd=-39.8% exp=81% trades=155
+[ 12.1m]   LSTM  tuned_wf  test seed=0   sharpe=+0.20 ret=+1.4% mdd=-40.3% exp=73% trades=211
+[ 12.6m]   LSTM  tuned     val  seed=1   sharpe=+1.94 ret=+126.1% mdd=-36.8% exp=86% trades=71
+[ 12.7m]   LSTM  tuned     test seed=1   sharpe=+0.10 ret=-6.0% mdd=-53.0% exp=87% trades=107
+[ 13.9m]   LSTM  tuned_wf  test seed=1   sharpe=+0.06 ret=-7.7% mdd=-54.0% exp=80% trades=154
+[ 14.8m]   LSTM  tuned     val  seed=2   sharpe=+1.71 ret=+91.2% mdd=-39.3% exp=62% trades=142
+[ 15.3m]   LSTM  tuned     test seed=2   sharpe=-0.16 ret=-22.0% mdd=-50.6% exp=86% trades=147
+[ 19.2m]   LSTM  tuned_wf  test seed=2   sharpe=+0.26 ret=+5.9% mdd=-34.5% exp=58% trades=245
+[ 19.2m]   LSTM  tuned     val  seed=ens sharpe=+1.91 ret=+114.3% mdd=-31.6% exp=72% trades=132
+[ 19.2m]   LSTM  tuned     test seed=ens sharpe=+0.04 ret=-10.6% mdd=-47.1% exp=88% trades=117
+[ 19.2m]   LSTM  tuned_wf  test seed=ens sharpe=+0.18 ret=+0.2% mdd=-39.0% exp=73% trades=233
+[ 19.2m] saved 24 position series -> C:\Users\rudra\OneDrive\Desktop\Claude Code\CryptoTrading\results

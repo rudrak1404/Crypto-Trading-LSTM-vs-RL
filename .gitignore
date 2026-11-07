@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.pytest_cache/
+data/raw/
+data/*.csv
+results/quick/
+results/quick_stdout.txt
+*.pyc
+results/models/
+results/*_stdout.txt

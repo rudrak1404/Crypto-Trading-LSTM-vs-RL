@@ -1,0 +1,61 @@
+[  0.0m] data: {'rows': 68605, 'start': '2019-01-01 00:00:00+00:00', 'end': '2026-10-31 23:00:00+00:00', 'missing_hours': 59}
+[  0.0m] train:  43656 bars  2019-01-08 00:00:00+00:00 -> 2023-12-31 23:00:00+00:00
+[  0.0m] val  :   8784 bars  2024-01-01 00:00:00+00:00 -> 2024-12-31 23:00:00+00:00
+[  0.0m] test :  16055 bars  2025-01-01 00:00:00+00:00 -> 2026-10-31 22:00:00+00:00
+[  0.0m] walk-forward: 8 segments: 2025-01-01, 2025-04-01, 2025-07-01, 2025-10-01, 2026-01-01, 2026-04-01, 2026-07-01, 2026-10-01
+[  0.0m] 
+== PPO untuned (SB3 defaults, hourly, fit once on train), 10 workers
+[ 10.0m]   PPO   untuned   val  seed=0   sharpe=-1.78 ret=-51.6% mdd=-60.8% exp=47% trades=1433
+[ 10.0m]   PPO   untuned   test seed=0   sharpe=-3.68 ret=-86.4% mdd=-86.4% exp=42% trades=2334
+[ 10.2m]   PPO   untuned   val  seed=1   sharpe=-2.72 ret=-66.2% mdd=-68.5% exp=46% trades=1291
+[ 10.2m]   PPO   untuned   test seed=1   sharpe=-4.42 ret=-92.1% mdd=-92.2% exp=44% trades=2179
+[ 10.2m]   PPO   untuned   val  seed=2   sharpe=-1.94 ret=-55.8% mdd=-61.1% exp=51% trades=1567
+[ 10.2m]   PPO   untuned   test seed=2   sharpe=-3.92 ret=-91.1% mdd=-92.0% exp=56% trades=2549
+[ 10.2m]   PPO   untuned   val  seed=ens sharpe=-3.46 ret=-74.8% mdd=-75.6% exp=47% trades=1675
+[ 10.2m]   PPO   untuned   test seed=ens sharpe=-4.69 ret=-93.4% mdd=-93.4% exp=46% trades=2847
+[ 10.2m] 
+== PPO Optuna: 3 x 8 parallel trials, objective = validation Sharpe (exposure >= 10%)
+[ 21.4m]   trial  0 score=+1.04 sharpe=+1.04 exp=40% trades=157 {'window': 24, 'lr': 0.000202727317015276, 'n_steps': 512, 'gamma': 0.97, 'ent_coef': 0.013703835270362645, 'net': 128, 'downside_penalty': 0.0, 'decide_every': 24}
+[ 21.4m]   trial  1 score=-10.00 sharpe=-1.17 exp=0% trades=4 {'window': 12, 'lr': 0.0004632042626636097, 'n_steps': 512, 'gamma': 0.9, 'ent_coef': 0.0005176398009690514, 'net': 64, 'downside_penalty': 2.0, 'decide_every': 12}
+[ 22.2m]   trial  2 score=-2.41 sharpe=-2.41 exp=30% trades=1181 {'window': 48, 'lr': 3.705419181778154e-05, 'n_steps': 512, 'gamma': 0.99, 'ent_coef': 0.0034589475764299185, 'net': 128, 'downside_penalty': 0.5, 'decide_every': 1}
+[ 22.8m]   trial  3 score=-1.85 sharpe=-1.85 exp=14% trades=182 {'window': 48, 'lr': 4.8703159315306354e-05, 'n_steps': 1024, 'gamma': 0.97, 'ent_coef': 0.043195132101239785, 'net': 128, 'downside_penalty': 0.5, 'decide_every': 12}
+[ 22.8m]   trial  4 score=+1.51 sharpe=+1.51 exp=59% trades=323 {'window': 24, 'lr': 0.00034015145030810744, 'n_steps': 256, 'gamma': 0.99, 'ent_coef': 0.0007241158387044706, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 12}
+[ 22.8m]   trial  5 score=+0.19 sharpe=+0.19 exp=30% trades=292 {'window': 48, 'lr': 0.0008758258092317219, 'n_steps': 1024, 'gamma': 0.99, 'ent_coef': 0.0016098224702211664, 'net': 64, 'downside_penalty': 0.5, 'decide_every': 12}
+[ 22.8m]   trial  6 score=-1.33 sharpe=-1.33 exp=20% trades=588 {'window': 48, 'lr': 0.0002869724736599819, 'n_steps': 512, 'gamma': 0.97, 'ent_coef': 0.00465591566469371, 'net': 64, 'downside_penalty': 2.0, 'decide_every': 4}
+[ 22.8m]   trial  7 score=-7.57 sharpe=-7.57 exp=33% trades=2585 {'window': 12, 'lr': 0.0006845613485069637, 'n_steps': 256, 'gamma': 0.99, 'ent_coef': 0.0002531375027980706, 'net': 64, 'downside_penalty': 2.0, 'decide_every': 1}
+[ 31.1m]   trial  8 score=-0.69 sharpe=-0.69 exp=45% trades=947 {'window': 48, 'lr': 0.0006259166208793829, 'n_steps': 256, 'gamma': 0.97, 'ent_coef': 0.002548368166188359, 'net': 128, 'downside_penalty': 0.5, 'decide_every': 4}
+[ 31.1m]   trial  9 score=+1.59 sharpe=+1.59 exp=72% trades=142 {'window': 24, 'lr': 6.90880883522969e-05, 'n_steps': 256, 'gamma': 0.97, 'ent_coef': 0.001187918653624944, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 24}
+[ 31.1m]   trial 10 score=-10.00 sharpe=+0.00 exp=0% trades=0 {'window': 24, 'lr': 5.631652875319915e-05, 'n_steps': 1024, 'gamma': 0.99, 'ent_coef': 0.04708635939739896, 'net': 128, 'downside_penalty': 2.0, 'decide_every': 24}
+[ 31.1m]   trial 11 score=-10.00 sharpe=-1.04 exp=0% trades=2 {'window': 24, 'lr': 0.0004925494243314283, 'n_steps': 512, 'gamma': 0.97, 'ent_coef': 0.00048459717295038857, 'net': 128, 'downside_penalty': 2.0, 'decide_every': 24}
+[ 31.1m]   trial 12 score=-10.00 sharpe=-1.26 exp=1% trades=14 {'window': 12, 'lr': 4.766997967990947e-05, 'n_steps': 256, 'gamma': 0.99, 'ent_coef': 0.0009115659880736645, 'net': 64, 'downside_penalty': 0.5, 'decide_every': 12}
+[ 31.1m]   trial 13 score=-4.69 sharpe=-4.69 exp=50% trades=2185 {'window': 12, 'lr': 0.0007810551393050078, 'n_steps': 512, 'gamma': 0.9, 'ent_coef': 0.04347404609896074, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 1}
+[ 31.1m]   trial 14 score=-10.00 sharpe=-1.43 exp=1% trades=12 {'window': 24, 'lr': 3.1425296505576044e-05, 'n_steps': 1024, 'gamma': 0.99, 'ent_coef': 0.0009880952146374088, 'net': 128, 'downside_penalty': 0.5, 'decide_every': 12}
+[ 31.1m]   trial 15 score=-10.00 sharpe=+0.05 exp=0% trades=2 {'window': 12, 'lr': 3.986840283241286e-05, 'n_steps': 256, 'gamma': 0.97, 'ent_coef': 0.012016398602778257, 'net': 64, 'downside_penalty': 0.5, 'decide_every': 12}
+[ 37.8m]   trial 16 score=+1.51 sharpe=+1.51 exp=86% trades=78 {'window': 24, 'lr': 3.227070053299499e-05, 'n_steps': 256, 'gamma': 0.97, 'ent_coef': 0.00033900708680769797, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 24}
+[ 37.8m]   trial 17 score=+1.82 sharpe=+1.82 exp=47% trades=164 {'window': 24, 'lr': 0.00017277216481159552, 'n_steps': 256, 'gamma': 0.97, 'ent_coef': 0.0009079154170956705, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 24}
+[ 37.8m]   trial 18 score=+0.28 sharpe=+0.28 exp=62% trades=315 {'window': 24, 'lr': 7.212316992252699e-05, 'n_steps': 256, 'gamma': 0.99, 'ent_coef': 0.0008108362760475236, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 12}
+[ 37.8m]   trial 19 score=+1.36 sharpe=+1.36 exp=51% trades=335 {'window': 24, 'lr': 0.0006851990221197612, 'n_steps': 256, 'gamma': 0.99, 'ent_coef': 0.00010042898818357469, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 12}
+[ 38.3m]   trial 20 score=+0.98 sharpe=+0.98 exp=57% trades=140 {'window': 48, 'lr': 8.468062346388591e-05, 'n_steps': 256, 'gamma': 0.97, 'ent_coef': 0.013217926434041677, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 24}
+[ 38.3m]   trial 21 score=+0.78 sharpe=+0.78 exp=72% trades=265 {'window': 24, 'lr': 4.366620030933565e-05, 'n_steps': 256, 'gamma': 0.99, 'ent_coef': 0.010347882942837984, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 12}
+[ 38.3m]   trial 22 score=+0.58 sharpe=+0.58 exp=54% trades=351 {'window': 24, 'lr': 0.0003621215260266392, 'n_steps': 256, 'gamma': 0.99, 'ent_coef': 0.00028901943403308454, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 12}
+[ 38.3m]   trial 23 score=+0.50 sharpe=+0.50 exp=57% trades=130 {'window': 24, 'lr': 3.0334137370318914e-05, 'n_steps': 1024, 'gamma': 0.97, 'ent_coef': 0.0038260524066455145, 'net': 64, 'downside_penalty': 0.0, 'decide_every': 24}
+[ 38.3m] best PPO: RLConfig(window=24, episode_len=720, timesteps=300000, lr=0.00017277216481159552, n_steps=256, batch=64, gamma=0.97, ent_coef=0.0009079154170956705, net=64, downside_penalty=0.0, allow_short=False, decide_every=24, n_envs=4, seed=0) | val score 1.819
+[ 38.3m] 
+== PPO tuned (single refit on train+val) and tuned_wf (quarterly walk-forward)
+[ 60.1m]   PPO   tuned     val  seed=0   sharpe=+1.82 ret=+80.9% mdd=-16.9% exp=47% trades=164
+[ 60.1m]   PPO   tuned_wf  val  seed=0   sharpe=+1.82 ret=+80.9% mdd=-16.9% exp=47% trades=164
+[ 60.1m]   PPO   tuned     test seed=0   sharpe=+0.03 ret=-6.7% mdd=-39.3% exp=46% trades=298
+[ 60.1m]   PPO   tuned     val  seed=1   sharpe=+0.62 ret=+18.3% mdd=-34.3% exp=56% trades=162
+[ 60.1m]   PPO   tuned_wf  val  seed=1   sharpe=+0.62 ret=+18.3% mdd=-34.3% exp=56% trades=162
+[ 60.1m]   PPO   tuned     test seed=1   sharpe=-0.90 ret=-47.6% mdd=-54.3% exp=54% trades=285
+[ 60.1m]   PPO   tuned     val  seed=2   sharpe=+0.10 ret=-3.4% mdd=-38.4% exp=47% trades=161
+[ 60.1m]   PPO   tuned_wf  val  seed=2   sharpe=+0.10 ret=-3.4% mdd=-38.4% exp=47% trades=161
+[ 60.1m]   PPO   tuned     test seed=2   sharpe=-0.71 ret=-37.5% mdd=-51.5% exp=43% trades=279
+[ 60.2m]   PPO   tuned_wf  test seed=0   sharpe=-0.21 ret=-19.8% mdd=-32.1% exp=58% trades=283
+[ 60.2m]   PPO   tuned_wf  test seed=1   sharpe=+0.21 ret=+2.3% mdd=-35.7% exp=55% trades=266
+[ 60.2m]   PPO   tuned_wf  test seed=2   sharpe=-0.47 ret=-29.5% mdd=-43.5% exp=46% trades=266
+[ 60.2m]   PPO   tuned     val  seed=ens sharpe=+1.11 ret=+43.4% mdd=-27.9% exp=52% trades=152
+[ 60.2m]   PPO   tuned     test seed=ens sharpe=-0.09 ret=-12.9% mdd=-38.4% exp=46% trades=277
+[ 60.2m]   PPO   tuned_wf  val  seed=ens sharpe=+1.11 ret=+43.4% mdd=-27.9% exp=52% trades=152
+[ 60.2m]   PPO   tuned_wf  test seed=ens sharpe=-0.43 ret=-30.5% mdd=-44.0% exp=54% trades=270
+[ 60.2m] saved 24 position series -> C:\Users\rudra\OneDrive\Desktop\Claude Code\CryptoTrading\results
